@@ -1,0 +1,9 @@
+<div class="description" *ngIf="selectedDrillObs$ | async as selectedDrill">
+        <span style="font-size: 12px">{{selectedDrill.description}}</span> 
+   </div>
+   
+   <div *ngIf="drills$ | async as drills" >
+       <select #drillSelect id="drill-select" (change)="drillChanged(drillSelect.value)" class="right">
+           <option *ngFor="let drill of drills" [value]="drill">{{drill}}</option>
+       </select>
+   </div>

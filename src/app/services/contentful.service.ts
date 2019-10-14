@@ -33,6 +33,7 @@ export class ContentfulService {
   }
 
   getSelectedDrill(name) {
+    console.log("Services",name)
     if (!this.content) return {};
 
     const item = this.content
@@ -43,6 +44,7 @@ export class ContentfulService {
         description: val.fields['description'],
         techniques: val.fields['techniques']
       }))[0];
+      console.log("return Services",item);
     return item;
   }
 

@@ -28,11 +28,12 @@ export class CountdownComponent implements OnInit, AfterViewInit {
   @ViewChild('reset', { static: true })
   resetBtn: ElementRef;
 
-  @ViewChild('drillSelect', { static: true })
-  drillSelect: ElementRef;
+  // @ViewChild('drillSelect', { static: true })
+  // drillSelect: ElementRef;
 
   drills$;
-  techniques = [];
+   techniques = [];
+
   selectedDrill$ = new Subject();
   selectedDrillObs$;
 
@@ -40,21 +41,18 @@ export class CountdownComponent implements OnInit, AfterViewInit {
   max = 0;
   min = 0;
 
-  constructor(public d: InputToCountdownDirective, private s: SynthesisService, private c: ContentfulService) { }
+  constructor(public d: InputToCountdownDirective, private s: SynthesisService) { }
 
   ngOnInit() {
-    this.drills$ = this.c.getDrills().pipe(tap(val => this.selectedDrill$.next(val[0])));
-    this.selectedDrillObs$ = this.selectedDrill$.asObservable().pipe(map(val => {
-      const drill = this.c.getSelectedDrill(val);
-      this.techniques = drill.techniques;
-      return drill;
-    }))
+   
   }
 
   ngAfterViewInit(): void {
     // 3.1
     this.s.updateMessage('hello');
+    // console.log('before');
     const start$ = fromEvent(this.startBtn.nativeElement, 'click').pipe(mapTo(true));
+    // console.log('After');
     const pause$ = fromEvent(this.pauseBtn.nativeElement, 'click').pipe(mapTo(false));
     const reset$ = fromEvent(this.resetBtn.nativeElement, 'click').pipe(mapTo(null));
     const zero$ = new Subject();
@@ -76,7 +74,7 @@ export class CountdownComponent implements OnInit, AfterViewInit {
     // End 3.1
 
     this.d.intervalObs$.subscribe(val => {
-      console.log(val)
+      // console.log("Val",val)
       this.max = val.max;
       this.min = val.min;
     }); // TODO: Don't do this, Brain is alseep.
@@ -85,11 +83,11 @@ export class CountdownComponent implements OnInit, AfterViewInit {
     merge(start$, pause$, reset$, zero$).pipe(
       switchMap(isCounting => {
         const random = () => {
-          console.log(this.min);
-          console.log(this.max);
+          // console.log(this.min);
+          // console.log(this.max);
 
           const value = (this.min * 1000) + (Math.floor((Math.random() * (this.max + 1 - this.min))) * 1000)
-          console.log(value);
+          // console.log(value);
           return value;
         };
         if (isCounting === null) return of(null);
@@ -98,9 +96,10 @@ export class CountdownComponent implements OnInit, AfterViewInit {
             return of(val).pipe(delay(random()), tap(val => {
               const arrayLength = this.techniques.length;
               const randValue = Math.floor((Math.random() * arrayLength))
-              const message = this.techniques[randValue];
-              this.s.updateMessage(message);
-              this.s.speak();
+              // const message = this.techniques[randValue];
+              
+              // this.s.updateMessage(message);
+              // this.s.speak();
             }));
           })
         ) : of();
@@ -108,7 +107,7 @@ export class CountdownComponent implements OnInit, AfterViewInit {
     ).subscribe(console.log) // TODO: Don't do this either, async pipe later or something cute
   }
 
-  drillChanged(value) {
-    this.selectedDrill$.next(value);
-  }
+  // drillChanged(value) {
+  //   this.selectedDrill$.next(value);
+  // }
 }

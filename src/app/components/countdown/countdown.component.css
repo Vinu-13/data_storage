@@ -11,7 +11,9 @@ button {
   ng-container {
     font-size: 48px;
   }
-
+  .template{
+    font-size:30px;
+  }
 
 :host {
   font-size: 128px;
@@ -19,5 +21,8 @@ button {
 }
   
 .description {
-  font-size: 24px;
+  font-size: 20px;
 }
+.right{
+    font-size: 15px;
+  }

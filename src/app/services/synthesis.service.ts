@@ -22,6 +22,7 @@ export class SynthesisService {
   }
 
   speak() {
+    console.log("utterance",this.utterance);
     this.synth.speak(this.utterance);
   }
 
