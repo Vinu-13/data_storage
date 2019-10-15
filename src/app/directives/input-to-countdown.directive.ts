@@ -38,17 +38,17 @@ history:any[]=[];
       update.seconds = valToNumber;
       this.hsecond=valToNumber;
       this.obj['mysecond'] = this.hsecond;
-      this.history.push(this.obj);
+    //  this.history.push(this.obj);
     //  console.log("Seconds",this.history);
 
     }
-   
+  
     if (command === 'minutes')
     {
       update.minutes = valToNumber;
       this.hminute=valToNumber;
       this.obj['myminutes'] = this.hminute;
-      this.history.push(this.obj);
+    //  this.history.push(this.obj);
      // console.log('obj',this.obj2)
       
     }
@@ -60,9 +60,11 @@ history:any[]=[];
       this.history.push(this.obj);
       console.log('obj',this.obj);
     }
+  //  this.history.push(this.obj);
     update.totalTime = this.calculateSeconds(update);
     this.state.next(update);
   }
+  
   // End 1.2
 
   updateIntervalState(value, command) {
