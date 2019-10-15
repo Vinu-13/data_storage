@@ -1,11 +1,15 @@
 import { Directive } from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
+import { ɵangular_packages_platform_browser_platform_browser_j } from '@angular/platform-browser';
+import { faLongArrowAltDown } from '@fortawesome/free-solid-svg-icons';
+import { Time } from '../common/models/time.models';
 
 @Directive({
   selector: '[appInputToCountdown]'
 })
 export class InputToCountdownDirective {
-history:any[]=[];
+history = new Array();
+timeobj = new Time();
 
   // 1.1 
   private state = new BehaviorSubject({
@@ -26,8 +30,7 @@ history:any[]=[];
   hhour:number;
   hminute:number;
   obj = new Object();
- 
-
+  
   // 1.2
   updateState(value, command) {
     let valToNumber = parseInt(value);
@@ -36,31 +39,17 @@ history:any[]=[];
     if (command === 'seconds') 
     {
       update.seconds = valToNumber;
-      this.hsecond=valToNumber;
-      this.obj['mysecond'] = this.hsecond;
-    //  this.history.push(this.obj);
-    //  console.log("Seconds",this.history);
-
     }
-  
     if (command === 'minutes')
     {
       update.minutes = valToNumber;
-      this.hminute=valToNumber;
-      this.obj['myminutes'] = this.hminute;
-    //  this.history.push(this.obj);
-     // console.log('obj',this.obj2)
-      
     }
-    if (command === 'hours')
+     if (command === 'hours')
     {
       update.hours = valToNumber;
-      this.hhour=valToNumber;
-      this.obj['myhour'] = this.hhour;
-      this.history.push(this.obj);
-      console.log('obj',this.obj);
     }
-  //  this.history.push(this.obj);
+  
+
     update.totalTime = this.calculateSeconds(update);
     this.state.next(update);
   }

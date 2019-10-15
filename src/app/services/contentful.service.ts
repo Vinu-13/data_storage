@@ -18,7 +18,7 @@ const CONFIG = {
   providedIn: 'root'
 })
 export class ContentfulService {
-
+  public selectedname;
   public content;
 
   private cdaClient = createClient({
@@ -32,8 +32,22 @@ export class ContentfulService {
     })
   }
 
+  getDrillContect(){
+    const name = this.selectedname
+    const item = this.content
+    .filter(val => val.fields['name'] === name)
+    .map(val => ({
+      id: val.fields['id'],
+      name: val.fields['name'],
+      description: val.fields['description'],
+      techniques: val.fields['techniques']
+    }))[0];
+    return item
+  }
+
   getSelectedDrill(name) {
     console.log("Services",name)
+    this.selectedname = name
     if (!this.content) return {};
 
     const item = this.content

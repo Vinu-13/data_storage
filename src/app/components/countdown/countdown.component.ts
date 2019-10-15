@@ -7,6 +7,8 @@ import { faSquare } from '@fortawesome/free-solid-svg-icons';
 import { InputToCountdownDirective } from 'src/app/directives/input-to-countdown.directive';
 import { SynthesisService } from 'src/app/services/synthesis.service';
 import { ContentfulService } from 'src/app/services/contentful.service';
+import {Time} from '../../common/models/time.models';
+import {DrillComponent} from '../drill/drill.component';
 
 @Component({
   selector: 'app-countdown',
@@ -18,6 +20,8 @@ export class CountdownComponent implements OnInit, AfterViewInit {
   faPlay = faPlay;
   faPause = faPause;
   faSquare = faSquare;
+  history  = new Array();
+
 
   @ViewChild('start', { static: true })
   startBtn: ElementRef;
@@ -41,7 +45,7 @@ export class CountdownComponent implements OnInit, AfterViewInit {
   max = 0;
   min = 0;
 
-  constructor(public d: InputToCountdownDirective, private s: SynthesisService) { }
+  constructor(public d: InputToCountdownDirective, private s: SynthesisService , private c: ContentfulService) { }
 
   ngOnInit() {
    
@@ -50,20 +54,31 @@ export class CountdownComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     // 3.1
     this.s.updateMessage('hello');
-    // console.log('before');
     const start$ = fromEvent(this.startBtn.nativeElement, 'click').pipe(mapTo(true));
-    // console.log('After');
+    start$.subscribe(x => {
+      if(x === true){
+        let newTime  = new Time();
+        newTime.hours = this.d.getHours();
+        newTime.minutes = this.d.getMinutes();
+        newTime.seconds = this.d.getSeconds();
+        newTime.content = this.c.getDrillContect();
+        this.history.push(newTime);
+      }
+    } 
+  );
     const pause$ = fromEvent(this.pauseBtn.nativeElement, 'click').pipe(mapTo(false));
     const reset$ = fromEvent(this.resetBtn.nativeElement, 'click').pipe(mapTo(null));
     const zero$ = new Subject();
     const stateChange$ = this.d.obs$.pipe(mapTo(null));
     this.intervalObs$ = merge(start$, pause$, reset$, stateChange$, zero$).pipe(
       switchMap(isCounting => {
+        
         if (isCounting === null) return of(null);
         return isCounting ? interval(1000) : of();
       }),
       scan((accumulatedValue, currentValue) => {
         if (accumulatedValue === 0 && currentValue !== null) {
+          console.log("History",this.history)
           zero$.next(null);
           return accumulatedValue;
         }
