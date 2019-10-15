@@ -8,6 +8,7 @@ import { InputToCountdownDirective } from './directives/input-to-countdown.direc
 import { TimeFormatPipe } from './pipes/time-format.pipe';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { DrillComponent } from './components/drill/drill.component';
+import { HistorywidgetComponent } from './components/historywidget/historywidget.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -15,7 +16,8 @@ import { DrillComponent } from './components/drill/drill.component';
     CountdownComponent,
     InputToCountdownDirective,
     TimeFormatPipe,
-    DrillComponent
+    DrillComponent,
+    HistorywidgetComponent
   ],
   imports: [
     BrowserModule,

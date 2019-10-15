@@ -5,6 +5,7 @@ import {BehaviorSubject} from 'rxjs';
   selector: '[appInputToCountdown]'
 })
 export class InputToCountdownDirective {
+history:any[]=[];
 
   // 1.1 
   private state = new BehaviorSubject({
@@ -21,15 +22,44 @@ export class InputToCountdownDirective {
     max: 0
   });
   public intervalObs$ = this.intervalState.asObservable();
+  hsecond: number;
+  hhour:number;
+  hminute:number;
+  obj = new Object();
+ 
 
   // 1.2
   updateState(value, command) {
     let valToNumber = parseInt(value);
     if (valToNumber < 0) valToNumber = 0;
     let update = this.state.value;
-    if (command === 'seconds') update.seconds = valToNumber;
-    if (command === 'minutes') update.minutes = valToNumber;
-    if (command === 'hours') update.hours = valToNumber;
+    if (command === 'seconds') 
+    {
+      update.seconds = valToNumber;
+      this.hsecond=valToNumber;
+      this.obj['mysecond'] = this.hsecond;
+      this.history.push(this.obj);
+    //  console.log("Seconds",this.history);
+
+    }
+   
+    if (command === 'minutes')
+    {
+      update.minutes = valToNumber;
+      this.hminute=valToNumber;
+      this.obj['myminutes'] = this.hminute;
+      this.history.push(this.obj);
+     // console.log('obj',this.obj2)
+      
+    }
+    if (command === 'hours')
+    {
+      update.hours = valToNumber;
+      this.hhour=valToNumber;
+      this.obj['myhour'] = this.hhour;
+      this.history.push(this.obj);
+      console.log('obj',this.obj);
+    }
     update.totalTime = this.calculateSeconds(update);
     this.state.next(update);
   }

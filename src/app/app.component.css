@@ -1,13 +1,19 @@
 .left {
-    height: 60%;
+    /* height: 60%;
     padding: 20px;
-    position:relative;
+    position:relative; */
     /* width: 40%;
     top: 35%;
     left: 21%; */
-    width: 29%;
+    /* width: 29%;
     top: 35%;
-    left: 15%;
+    left: 15%; */
+    height: 60%;
+    padding: 0px;
+    position: relative;
+    width: 24%;
+    top: 35%;
+    left: 14%;
     transform: translate(-50%, -50%);
     border-radius: 2px;
     box-shadow: 0 0 5px rgba(0,0,0,0.3);
@@ -24,8 +30,10 @@
     top: 0;
     z-index: -10;
     background: rgb(45, 137, 73);
-    background: linear-gradient(135deg, rgba(89,45,137,1) 0%, rgba(255,0,0,0.2) 35%, rgba(138, 76, 76, 0.4) 50%, rgba(255,0,0,0.6) 65%, rgba(255,0,0,0.8) 100%);
+    /* background: linear-gradient(135deg, rgba(89,45,137,1) 0%, rgba(255,0,0,0.2) 35%, rgba(138, 76, 76, 0.4) 50%, rgba(255,0,0,0.5) 65%, rgba(255,0,0,0.3) 100%); */
+    background: linear-gradient(135deg, rgba(89,45,137,1) 0%, rgba(255, 0, 215, 0) 35%, rgba(162, 137, 173, 0.4) 50%, rgba(207, 0, 255, 0.03) 65%, rgba(255, 0, 247, 0.05) 100%);
 }
+
 .header {
     background-color: rgba(89,45,137,1);
     color: #ffffff;
@@ -47,10 +55,13 @@
  
   .center{
     background: grey;
-    width: 500px;
+    width: 325px;
     display: flex;
+    right: 40%;
+    /* width: 500px;
+    display: flex; */
     /* right: 18%; */
-    right: 30%;
+    /* right: 30%; */
     position: absolute;
     top: 15%;
   }

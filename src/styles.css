@@ -1,6 +1,6 @@
-/* You can add global styles to this file, and also import other style files */
-/* You can add global styles to this file, and also import other style files */
-/* #b7178c */
+
+
+
 @keyframes colorhue{
     from {-webkit-filter: hue-rotate(0deg); filter: hue-rotate(0deg);}
     to {-webkit-filter: hue-rotate(359deg); filter: hue-rotate(359deg);}
@@ -8,4 +8,5 @@
 
 .edit {
     animation: colorhue 10s linear infinite;
-}
+} 
+
