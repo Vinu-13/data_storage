@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, Input } from '@angular/core';
+import { EventEmitter } from 'protractor';
 
 @Component({
   selector: 'app-historywidget',
@@ -6,10 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./historywidget.component.css']
 })
 export class HistorywidgetComponent implements OnInit {
-
+  @Input() HistoryvaluesfromApp :any;
   constructor() { }
 
   ngOnInit() {
+  // console.log("child",this.history);
   }
-
 }

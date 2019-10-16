@@ -4,6 +4,7 @@ import { createClient, Entry } from 'contentful';
 import { from, Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 
+
 // https://www.contentful.com/developers/docs/references/authentication/
 const CONFIG = {
   space: 'cxts8zfs2vii',
@@ -27,6 +28,7 @@ export class ContentfulService {
   });
 
   constructor() { 
+   
     this.getContentFromServer().subscribe(val => {
       this.content = val;
     })
@@ -45,11 +47,13 @@ export class ContentfulService {
     return item
   }
 
+getHistory(){
+  
+}
   getSelectedDrill(name) {
     console.log("Services",name)
     this.selectedname = name
     if (!this.content) return {};
-
     const item = this.content
       .filter(val => val.fields['name'] === name)
       .map(val => ({

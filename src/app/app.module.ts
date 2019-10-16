@@ -9,6 +9,9 @@ import { TimeFormatPipe } from './pipes/time-format.pipe';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { DrillComponent } from './components/drill/drill.component';
 import { HistorywidgetComponent } from './components/historywidget/historywidget.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,10 +21,12 @@ import { HistorywidgetComponent } from './components/historywidget/historywidget
     TimeFormatPipe,
     DrillComponent,
     HistorywidgetComponent
+  
   ],
   imports: [
     BrowserModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    BrowserAnimationsModule,
     
   ],
   providers: [],

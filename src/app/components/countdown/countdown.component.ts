@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild ,Input,Output, EventEmitter} from '@angular/core';
 import { fromEvent, interval, merge, of, range, BehaviorSubject, Subject } from 'rxjs';
 import { mapTo, scan, switchMap, takeUntil, concatMap, delay, mergeMap, tap, skipWhile, map } from 'rxjs/operators';
 import { faPlay } from '@fortawesome/free-solid-svg-icons';
@@ -21,8 +21,7 @@ export class CountdownComponent implements OnInit, AfterViewInit {
   faPause = faPause;
   faSquare = faSquare;
   history  = new Array();
-
-
+  
   @ViewChild('start', { static: true })
   startBtn: ElementRef;
 
@@ -31,6 +30,7 @@ export class CountdownComponent implements OnInit, AfterViewInit {
 
   @ViewChild('reset', { static: true })
   resetBtn: ElementRef;
+  @Output() HistoryValues = new EventEmitter();
 
   // @ViewChild('drillSelect', { static: true })
   // drillSelect: ElementRef;
@@ -44,6 +44,7 @@ export class CountdownComponent implements OnInit, AfterViewInit {
   intervalObs$;
   max = 0;
   min = 0;
+ 
 
   constructor(public d: InputToCountdownDirective, private s: SynthesisService , private c: ContentfulService) { }
 
@@ -63,7 +64,9 @@ export class CountdownComponent implements OnInit, AfterViewInit {
         newTime.seconds = this.d.getSeconds();
         newTime.content = this.c.getDrillContect();
         this.history.push(newTime);
+        this.HistoryValues.emit(this.history);
       }
+     
     } 
   );
     const pause$ = fromEvent(this.pauseBtn.nativeElement, 'click').pipe(mapTo(false));

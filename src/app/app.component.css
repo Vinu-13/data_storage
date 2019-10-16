@@ -13,7 +13,7 @@
     position: relative;
     width: 24%;
     top: 35%;
-    left: 14%;
+    left: 35%;
     transform: translate(-50%, -50%);
     border-radius: 2px;
     box-shadow: 0 0 5px rgba(0,0,0,0.3);
@@ -57,7 +57,7 @@
     background: grey;
     width: 325px;
     display: flex;
-    right: 40%;
+    right: 25%;
     /* width: 500px;
     display: flex; */
     /* right: 18%; */
@@ -67,13 +67,13 @@
   }
   .right{
     background: rgb(236, 230, 230);
-    width: 500px;
+    width: 350px;
     display: block;
     /* right: 18%; */
     color: black;
-    right: -15px;
+    right: -50px;
     float:right;
     position: relative;
-    top: 15%;
+    top: -55%;
     color: #0e0101;
   }

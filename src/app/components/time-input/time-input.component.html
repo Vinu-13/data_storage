@@ -3,7 +3,7 @@
 <label>
   Hours
   <input #hours type="number" min="0" max="59" placeholder="hours" [value]="d.getHours()"
-    (change)="d.updateState(hours.value, 'hours')" />
+    (change)="d.updateState(hours.value,'hours')" />
 </label>
 <label>
   Minutes
@@ -27,8 +27,8 @@
   <input #max type="number" placeholder="max" [value]="d.getMax()" (change)="d.updateIntervalState(max.value, 'max')" />
 </label>
 
-<p *ngFor="let time of d.history">
+<!-- <p *ngFor="let time of d.history">
   {{time.myhour}}
   {{time.mysecond}}
   {{time.myminutes}}
-</p>
+</p> -->
