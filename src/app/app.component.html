@@ -10,15 +10,15 @@
   </nav> -->
   <!-- <mat-slider min="1" max="100" step="1" value="1"></mat-slider> -->
 
-  
+  <div class="container">
+      <router-outlet></router-outlet>
+    </div>
 
-
-<div class="background" appInputToCountdown>
+<!-- <div class="background" appInputToCountdown>
   <div class="header">
     <p>Header</p>
   </div>
   <div class="left">
-    <!-- History Output -->
     <app-countdown (HistoryValues)='displayHistory($event)'></app-countdown> 
   </div>
 
@@ -33,14 +33,12 @@
   </div>
 
   <div class="right">
-    <!-- History Input  -->
       <app-historywidget [HistoryvaluesfromApp]="HistoryValuesToWidget"></app-historywidget>  
-     <!-- <app-historywidget  [gethistory]="history"></app-historywidget>  -->
   </div>
 
   <div class="footer">
     <p>Footer</p>
   </div>
-</div>
+</div> -->
 
 
